@@ -2,12 +2,6 @@
 
 全新打造的运维平台。框架命名：**`yw-framework`**。 所有模块的包名开头均为 **`com.winway`** 。 第三级别为模块名。
 
-###技术路线
-* shiro
-* spring boot
-* spring 
-* mybatis
-
 ### 系统模块 
  
  包名  | 描述
@@ -17,14 +11,31 @@
  winway-config  | 公共配置模块
  winway-util  | 工具包
  winway-system  | 系统包（集成登录、用户管理、权限管理、菜单管理）
+ 
+### 技术路线
+* shiro
+* spring boot
+* spring 
+* mybatis
+
+### 逻辑分层
+![Image text]( http://112.94.31.15:8777/jsjg.png)
+1)	shiro 用于验证用户权限，是否允许访问。
+2)	controller 实际接收参数的入口
+3)	service 逻辑处理层
+4)	convert  form与entity的转换（泛指两个相关类型的转换）
+5)	persistence 逻辑单元的处理，一般指表的增删改查
+6)	searchForm 与mapper对象一起使用，对逻辑单元的查询。
+7)	entity 实体对象：与数据库表字段一致
+8)	form form对象：与前端参数的接收参数，或者返回 数据。
 
 ### 重要使用技术点
-![Image text]( http://112.94.31.15:8777/jsjg.png)
-
 1. 所有实体类继承BaseEntity、所有form继承BaseForm
 2. 所有要建表的实体使用@YwTable(comment = "comment")注解；所有主键用@YwId()注解；所有字段用@YwColumn();
 3. 只允许 service 与 service 之间进行调用
 4. 不建议使用自定义sql进行写代码，所有代码均使用
+
+
 ### 独立使用
 1、 创建pom.xml
 ```
@@ -38,16 +49,10 @@
         <artifactId>yw-framework</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>winway-system</artifactId>
-    <packaging>war</packaging>
-
     
-    <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com.winway</groupId>
+    <artifactId>winway-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <name>demo</name>
 
     <parent>
         <groupId>com.winway</groupId>
@@ -104,6 +109,34 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://112.94.31.15:8082/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://112.94.31.15:8082/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
 ```
 
@@ -180,5 +213,8 @@ public class Student extends BaseEntity implements Serializable {
 
   Mapper、Service、Entity、Form、SearchForm、Controller
   
+  
 ### 集成System使用
  待补充
+
+**[框架解析](http://112.94.31.15:8777/框架解析.pdf)**
