@@ -1,6 +1,6 @@
 ## 运维后台框架
 
-全新打造的运维平台。框架命名：**`yw-framework`**。 所有模块的包名开头均为**`com.winway`**。 第三级别为模块名。
+全新打造的运维平台。框架命名：**`yw-framework`**。 所有模块的包名开头均为 **`com.winway`** 。 第三级别为模块名。
 
 ###技术路线
 * shiro
@@ -19,7 +19,8 @@
  winway-system  | 系统包（集成登录、用户管理、权限管理、菜单管理）
 
 ### 重要使用技术点
-![Image text]( http://localhost:81/jsjg.png)
+![Image text]( http://112.94.31.15:8777/jsjg.png)
+
 1. 所有实体类继承BaseEntity、所有form继承BaseForm
 2. 所有要建表的实体使用@YwTable(comment = "comment")注解；所有主键用@YwId()注解；所有字段用@YwColumn();
 3. 只允许 service 与 service 之间进行调用
