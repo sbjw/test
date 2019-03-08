@@ -5,6 +5,9 @@ eureka:
 server:
   port: 8764
 spring:
+  cloud: 
+    client:
+      ip-address: 192.168.7.103
   application:
     name: eurekaclient
   rabbitmq:
